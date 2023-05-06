@@ -1,0 +1,46 @@
+---
+version: '2'
+services:
+  presto:
+    image: ahanaio/prestodb-sandbox:0.280
+    container_name: presto
+    volumes:
+      - ${PWD}/config/catalog/mongodb.properties:/opt/presto-server/etc/catalog/mongodb.properties
+      - ${PWD}/config/catalog/mysql.properties:/opt/presto-server/etc/catalog/mysql.properties
+    depends_on:
+      - mongodb
+      - mysql
+    ports:
+      - "8080:8080"
+    networks:
+      - presto-nw
+
+  mongodb:
+    image: mongo:6.0.4
+    container_name: presto-mongo
+    volumes:
+      - mongoData:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - presto-nw
+  
+  mysql:
+    image: mysql
+    container_name: presto-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 'presto'
+      MYSQL_USER: 'presto'
+      MYSQL_PASSWORD: 'presto'
+    ports:
+      - "3306:3306"
+    networks:
+      - presto-nw
+
+networks:
+  presto-nw:
+    driver: bridge
+
+volumes:
+  mongoData:
+  
