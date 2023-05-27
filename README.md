@@ -1,9 +1,5 @@
 # PrestoDB with External DB
-PrestoDB with external database integration using docker compose file
-
-# Data lakehouse
-Used to maintain Structured, Semi-structured  and unstructured data permanently
-
+PrestoDB with external database integration using docker compose file. PrestoDB is used to maintain Structured, Semi-structured  and unstructured data permanently
 
 # Prerequisites
  Tested in Docker Version 20.x.x, Docker Compose version 1.29.x 
