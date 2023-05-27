@@ -81,13 +81,17 @@ select * from mysql.presto_to_mysql.author A join mongodb.presto_to_mongodb.book
 
 ## ✨ Run Presto with kafka
 
+Docker Compose command
+```
+    docker-compose -f docker-compose-presto-kafka.yml up
+``` 
 
 After docker compose command follow the below commands to execute the container
 
 |Description                         |Docker Execution Command |
 |-------------------------------|-----------------------------|
 |To Connect Prestodb            |docker exec -it presto presto-cli |
-|To connect kafka            |docker exec -it presto-kafka bash |
+|To Connect Kafka            |docker exec -it presto-kafka bash |
 
 Commands for showing list of topics, Consume selected topic and Produce messages in selected topic
 ```
