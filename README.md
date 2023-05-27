@@ -1,5 +1,5 @@
-# docker-presto-integration
-PrestoDB with external database integration.
+# PrestoDB with External DB
+PrestoDB with external database integration using docker compose file
 
 # Data lakehouse
 Used to maintain Structured, Semi-structured  and unstructured data permanently
@@ -8,25 +8,37 @@ Used to maintain Structured, Semi-structured  and unstructured data permanently
 # Prerequisites
  Tested in Docker Version 20.x.x, Docker Compose version 1.29.x 
 
-## ✨ Mongo with Prestodb Integration [Watch on YouTube]
+# Entire Docker Compose Commands
 
-This repository was created to accomodate my YouTube tutorial:
+## ✨ Run Presto with mongodb
+
+Watch youtube video for more details
 https://youtu.be/42pjHGjrpPs
 
 [![Mongo with Prestodb Integration](https://img.youtube.com/vi/42pjHGjrpPs/0.jpg)](https://youtu.be/42pjHGjrpPs "Mongo with Prestodb Integration")
 
-
-# How to run docker compose
-
-## Run Presto with mongodb
+Docker Compose command
 ```
     docker-compose -f docker-compose-presto-mongo.yml up
 ``` 
 
-## Run Presto with mongodb and mysql
+## ✨ Run Presto with mongodb and mysql
+
+- Connecting Prestodb, mongodb & mysql
+- Creating individual tables in mongodb and prestidb
+- Query data from prestodb to retrieve data from mongodb and mysql
+- Create a join query from prestodb for the table between mongodb & mysql
+
+Watch youtube video for more details
+https://youtu.be/lFg3rtQq-ug
+
+[![Mongo and Mysql with Prestodb Integration](https://img.youtube.com/vi/lFg3rtQq-ug/0.jpg)](https://youtu.be/lFg3rtQq-ug "Mongo with Prestodb Integration")
+
+Docker Compose command
 ```
     docker-compose -f docker-compose-presto-mysql-mongo.yml up
 ``` 
+After docker compose command follow the below commands to execute the container
 
 |Description                         |Docker Execution Command |
 |-------------------------------|-----------------------------|
@@ -34,7 +46,7 @@ https://youtu.be/42pjHGjrpPs
 |To connect mongoDB            |docker exec -it presto-mongo mongosh |
 |To connect mysql|docker exec -it presto-mysql mysql -h localhost -u root -p|
 
-Sample MongoDB Query from MongoDB
+Sample MongoDB Query from MongoDB Container
 ```
 use presto_to_mongodb;
 db.createCollection("book")
@@ -42,7 +54,7 @@ db.book.insertOne({"id":1, "book_name":"harry potter" })
 db.book.insertOne({"id":2, "book_name":"the wicked king" })
 ```
 
-Sample SQL Query from mysql
+Sample SQL Query from mysql Container
 ```
 CREATE DATABASE presto_to_mysql;
 show databases;
@@ -53,7 +65,7 @@ insert into author values(1, "Rowlings");
 insert into author values(2, "Holly Black");
 ```
 
-Sample query to query mongodb and mysql from PrestoDB
+Sample query to manipulate mongodb and mysql from PrestoDB
 ```
 show catalogs;
 -----------------------------------
