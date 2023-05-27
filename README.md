@@ -82,3 +82,28 @@ Join Query between mongodb and mysql from prestodb;
 ```
 select * from mysql.presto_to_mysql.author A join mongodb.presto_to_mongodb.book B on A.id=B.id;
 ```
+
+## ✨ Run Presto with kafka
+
+
+After docker compose command follow the below commands to execute the container
+
+|Description                         |Docker Execution Command |
+|-------------------------------|-----------------------------|
+|To Connect Prestodb            |docker exec -it presto presto-cli |
+|To connect kafka            |docker exec -it presto-kafka bash |
+
+Commands for showing list of topics, Consume selected topic and Produce messages in selected topic
+```
+docker exec -it presto-kafka bash /bin/kafka-topics --list --bootstrap-server localhost:9092
+
+docker exec -it presto-kafka bash /bin/kafka-console-consumer --topic codespotify.presto_kafka_topic --bootstrap-server localhost:9092
+
+docker exec -it presto-kafka bash /bin/kafka-console-producer --topic codespotify.presto_kafka_topic --bootstrap-server localhost:9092
+```
+
+Query to execute from PrestoDB to manipulate kafka messages
+```
+show schemas in kafka.codespotify;
+select _message from kafka.codespotify.presto_kafka_topic;
+```
