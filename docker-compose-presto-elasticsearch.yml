@@ -1,0 +1,40 @@
+---
+version: '2'
+services:
+  presto:
+    image: ahanaio/prestodb-sandbox:0.280
+    container_name: presto
+    volumes:
+      - ${PWD}/config/catalog/elasticsearch.properties:/opt/presto-server/etc/catalog/elasticsearch.properties
+    depends_on:
+      - elasticsearch
+    ports:
+      - "8080:8080"
+    networks:
+      - presto-nw
+  
+  elasticsearch:
+    container_name: presto-elasticsearch
+    image: elasticsearch:7.9.1
+    environment:
+      - cluster.name=nids-cluster
+      - bootstrap.memory_lock=true
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - ELASTIC_USERNAME=elastic
+      - ELASTIC_PASSWORD=elastic
+    ports:
+      - 9200:9200
+      - 9300:9300
+    volumes:
+      - es_data:/usr/share/elasticsearch/data:rw
+    networks:
+      - presto-nw
+
+volumes:
+  es_data:
+    driver: local
+
+networks:
+  presto-nw:
+    driver: bridge

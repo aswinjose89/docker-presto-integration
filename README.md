@@ -107,3 +107,38 @@ Query to execute from PrestoDB to manipulate kafka messages
 show schemas in kafka.codespotify;
 select _message from kafka.codespotify.presto_kafka_topic;
 ```
+
+## ✨ Run Presto with Elasticsearch
+
+Docker Compose command
+```
+    docker-compose -f docker-compose-presto-elasticsearch.yml up
+``` 
+
+After docker compose command follow the below commands to execute the container
+
+|Description                         |Docker Execution Command |
+|-------------------------------|-----------------------------|
+|To Connect Prestodb            |docker exec -it presto presto-cli |
+
+Create new Elasticsearch Index
+```
+curl -X PUT -H "Content-Type: application/json" http://localhost:9200/presto_es_index/ | json_pp
+```
+
+Search records in Elasticsearch Index
+```
+curl -X GET -H "Content-Type: application/json" http://localhost:9200/presto_es_index/_search | json_pp
+```
+
+Create new record in Elasticsearch
+```
+curl -X POST -H "Content-Type: application/json" http://localhost:9200/presto_es_index/_doc -d '{ "youtube" : "Welcome To CodeSpotify", "myname": "Aswin"}' | json_pp
+```
+
+Query to execute from PrestoDB to manipulate Elasticsearch index
+```
+show catalogs;
+show schemas in elasticsearch;
+select * from elasticsearch.presto_es_index.presto_es_index;
+```
