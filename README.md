@@ -81,6 +81,11 @@ select * from mysql.presto_to_mysql.author A join mongodb.presto_to_mongodb.book
 
 ## ✨ Run Presto with kafka
 
+Watch youtube video for more details
+https://youtu.be/LDTC6xz3MnM
+
+[![Mongo and Mysql with Prestodb Integration](https://img.youtube.com/vi/LDTC6xz3MnM/0.jpg)](https://youtu.be/LDTC6xz3MnM "Mongo with Prestodb Integration")
+
 Docker Compose command
 ```
     docker-compose -f docker-compose-presto-kafka.yml up
@@ -109,6 +114,11 @@ select _message from kafka.codespotify.presto_kafka_topic;
 ```
 
 ## ✨ Run Presto with Elasticsearch
+
+Watch youtube video for more details
+https://youtu.be/uZhqSCtnYVk
+
+[![Mongo and Mysql with Prestodb Integration](https://img.youtube.com/vi/uZhqSCtnYVk/0.jpg)](https://youtu.be/uZhqSCtnYVk "Mongo with Prestodb Integration")
 
 Docker Compose command
 ```
